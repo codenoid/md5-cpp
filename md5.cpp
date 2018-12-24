@@ -1,6 +1,7 @@
 #include <string.h>
 #include <iostream>
 #include "md5.h" 
+#define WASM_EXPORT __attribute__((visibility("default")))
 
 using namespace std;
 
@@ -19,8 +20,7 @@ static string MDPrint (MD5_CTX *mdContext)
   return res;
 }
 
-string MDString(char);
-
+WASM_EXPORT
 string MDString(const char *inString)
 {
   MD5_CTX mdContext;
@@ -33,4 +33,5 @@ string MDString(const char *inString)
   return MDPrint (&mdContext);
 }
 
+WASM_EXPORT
 int main(){ return 1; }
